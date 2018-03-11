@@ -1,0 +1,10 @@
+#! /bin/sh
+docker run \
+  --rm \
+  --interactive --tty \
+  --volume `pwd`:`pwd` \
+  --workdir `pwd` \
+  --env USER_ID=`id -u` \
+  --env GROUP_ID=`id -g` \
+  manala/test-js \
+  jest --config=config.json "$@"
