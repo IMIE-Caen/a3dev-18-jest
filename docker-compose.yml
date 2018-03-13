@@ -1,0 +1,20 @@
+# usage : dockercompose up
+
+version: '2'
+services:
+  php:
+    depends_on:
+      - roger_mysql
+    image: 'clmntlxndr/phpmysql'
+    ports: ["80:80"]
+    command: php -S 0.0.0.0:80
+    volumes:
+      - $PWD/app:/var/www/html
+  roger_mysql:
+    image: 'wangxian/alpine-mysql'
+    ports: ["3306:3306"]
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: clma
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
